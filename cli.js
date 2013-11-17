@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 'use strict';
 var fs = require('fs');
 var strip = require('./strip-json-comments');

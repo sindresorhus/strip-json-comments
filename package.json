@@ -26,6 +26,7 @@
     "url": "http://sindresorhus.com"
   },
   "files": [
+    "cli.js",
     "strip-json-comments.js"
   ],
   "main": "strip-json-comments",
