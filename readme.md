@@ -4,10 +4,10 @@
 
 This is now possible:
 
-```json
+```js
 {
 	// rainbows
-	"unicorn": /* ❤️ */ "cake"
+	"unicorn": /* ❤ */ "cake"
 }
 ```
 
