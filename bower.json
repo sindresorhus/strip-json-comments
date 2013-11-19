@@ -1,6 +1,5 @@
 {
   "name": "strip-json-comments",
-  "version": "0.1.1",
   "description": "Strip comments from JSON. Lets you use comments in your JSON files!",
   "main": "strip-json-comments.js",
   "keywords": [

@@ -1,6 +1,6 @@
 {
   "name": "strip-json-comments",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Strip comments from JSON. Lets you use comments in your JSON files!",
   "keywords": [
     "json",
@@ -17,7 +17,9 @@
     "settings",
     "util",
     "env",
-    "environment"
+    "environment",
+    "cli",
+    "bin"
   ],
   "license": "MIT",
   "author": {
@@ -38,7 +40,7 @@
     "test": "mocha"
   },
   "devDependencies": {
-    "mocha": "~1.14.0"
+    "mocha": "*"
   },
   "engines": {
     "node": ">=0.8.0"
