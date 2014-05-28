@@ -1,4 +1,3 @@
-/*global it */
 'use strict';
 var assert = require('assert');
 var strip = require('./strip-json-comments');
