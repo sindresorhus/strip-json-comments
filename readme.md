@@ -67,6 +67,8 @@ $ strip-json-comments --help
 strip-json-comments input-file > output-file
 # or
 strip-json-comments < input-file > output-file
+# or
+strip-json-comments -i <input-file> -o <output-file>
 ```
 
 
