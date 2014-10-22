@@ -69,6 +69,11 @@ strip-json-comments < input-file > output-file
 ```
 
 
+## Related
+
+- [`strip-css-comments`](https://github.com/sindresorhus/strip-css-comments)
+
+
 ## License
 
 MIT © [Sindre Sorhus](http://sindresorhus.com)
