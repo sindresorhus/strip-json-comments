@@ -37,7 +37,7 @@
   },
   "repository": "sindresorhus/strip-json-comments",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha --ui tdd"
   },
   "devDependencies": {
     "mocha": "*"
