@@ -7,7 +7,7 @@ This is now possible:
 ```js
 {
 	// rainbows
-	"unicorn": /* ‚ù§ */ "cake"
+	"unicorn": /* ‚?§ */ "cake"
 }
 ```
 
