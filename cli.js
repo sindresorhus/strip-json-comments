@@ -2,7 +2,7 @@
 'use strict';
 var fs = require('fs');
 var strip = require('./strip-json-comments');
-var input = process.argv[2];
+var input, output;
 
 
 function getStdin(cb) {
@@ -19,10 +19,20 @@ function getStdin(cb) {
 	});
 }
 
+function writeStdout(data, output) {
+	if (output) {
+		fs.writeFile(output, data);
+	} else {
+		process.stdout.write(data);
+	}
+}
+
 if (process.argv.indexOf('-h') !== -1 || process.argv.indexOf('--help') !== -1) {
 	console.log('strip-json-comments input-file > output-file');
 	console.log('or');
 	console.log('strip-json-comments < input-file > output-file');
+	console.log('or');
+	console.log('strip-json-comments -i input-file -o output-file');
 	return;
 }
 
@@ -31,11 +41,21 @@ if (process.argv.indexOf('-v') !== -1 || process.argv.indexOf('--version') !== -
 	return;
 }
 
+if (process.argv.indexOf('-i') !== -1) {
+	input = process.argv[process.argv.indexOf('-i') + 1];
+} else if (process.argv[2] && process.argv[2].substring(0, 1) !== '-') {
+	input = process.argv[2];
+}
+
+if (process.argv.indexOf('-o') !== -1) {
+	output = process.argv[process.argv.indexOf('-o') + 1];
+}
+
 if (input) {
-	process.stdout.write(strip(fs.readFileSync(input, 'utf8')));
+	writeStdout(strip(fs.readFileSync(input, 'utf8')), output);
 	return;
 }
 
 getStdin(function (data) {
-	process.stdout.write(strip(data));
+	writeStdout(strip(data), output);
 });
