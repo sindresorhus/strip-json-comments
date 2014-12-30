@@ -7,7 +7,7 @@ This is now possible:
 ```js
 {
 	// rainbows
-	"unicorn": /* â?¤ */ "cake"
+    "unicorn": /* â¤ */ "cake"
 }
 ```
 
@@ -68,7 +68,7 @@ strip-json-comments input-file > output-file
 # or
 strip-json-comments < input-file > output-file
 # or
-strip-json-comments -i <input-file> -o <output-file>
+strip-json-comments -i input-file -o output-file
 ```
 
 
