@@ -62,6 +62,6 @@
 	if (typeof module !== 'undefined' && module.exports) {
 		module.exports = stripJsonComments;
 	} else {
-		window.stripJsonComments = stripJsonComments;
+		this.stripJsonComments = stripJsonComments;
 	}
 })();
