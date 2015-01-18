@@ -5,7 +5,11 @@
 	by Sindre Sorhus
 	MIT License
 */
-(function () {
+
+/* global window */
+/* exported stripJsonComments */
+
+var stripJsonComments = (function () {
 	'use strict';
 
 	function stripJsonComments(str) {
@@ -64,4 +68,6 @@
 	} else if (typeof window !== 'undefined') {
 		window.stripJsonComments = stripJsonComments;
 	}
+
+	return stripJsonComments;
 })();
