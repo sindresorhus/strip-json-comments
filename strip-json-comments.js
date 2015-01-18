@@ -61,7 +61,7 @@
 
 	if (typeof module !== 'undefined' && module.exports) {
 		module.exports = stripJsonComments;
-	} else {
+	} else if (typeof window !== 'undefined') {
 		window.stripJsonComments = stripJsonComments;
 	}
 })();
