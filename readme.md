@@ -13,7 +13,7 @@ This is now possible:
 
 It will remove single-line comments `//` and multi-line comments `/**/`.
 
-Also available as a [gulp](https://github.com/sindresorhus/gulp-strip-json-comments)/[grunt](https://github.com/sindresorhus/grunt-strip-json-comments)/[broccoli](https://github.com/sindresorhus/broccoli-strip-json-comments) plugin and a [require hook](https://github.com/uTest/autostrip-json-comments).
+Also available as a [gulp](https://github.com/sindresorhus/gulp-strip-json-comments)/[grunt](https://github.com/sindresorhus/grunt-strip-json-comments)/[broccoli](https://github.com/sindresorhus/broccoli-strip-json-comments) plugin.
 
 -
 
