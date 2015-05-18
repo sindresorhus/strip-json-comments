@@ -25,16 +25,14 @@
   "author": {
     "name": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
-    "url": "http://sindresorhus.com"
+    "url": "sindresorhus.com"
   },
   "files": [
     "cli.js",
     "strip-json-comments.js"
   ],
   "main": "strip-json-comments",
-  "bin": {
-    "strip-json-comments": "cli.js"
-  },
+  "bin": "cli.js",
   "repository": "sindresorhus/strip-json-comments",
   "scripts": {
     "test": "mocha --ui tdd"
