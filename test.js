@@ -18,6 +18,10 @@ suite('Test Cases', function () {
 		assert.strictEqual(strip('{"\\"/*a":"b"}'), '{"\\"/*a":"b"}');
 	});
 
+	test('should consider escaped slashes when checking for escaped string quote', function () {
+		assert.strictEqual(strip('{"\\\\":"https://foobar.com"}'), '{"\\\\":"https://foobar.com"}');
+	});
+
 	suite('Line endings', function () {
 		test('no comments', function () {
 			assert.strictEqual(strip('{"a":"b"\n}'), '{"a":"b"\n}');
