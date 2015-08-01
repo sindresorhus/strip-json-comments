@@ -19,8 +19,11 @@
 			currentChar = str[i];
 			nextChar = str[i + 1];
 
-			if (!insideComment && str[i - 1] !== '\\' && currentChar === '"') {
-				insideString = !insideString;
+			if (!insideComment && currentChar === '"') {
+				var escaped = str[i - 1] === '\\' && str[i - 2] !== '\\';
+				if (!insideComment && !escaped && currentChar === '"') {
+					insideString = !insideString;
+				}
 			}
 
 			if (insideString) {
