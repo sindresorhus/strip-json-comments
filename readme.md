@@ -22,15 +22,15 @@ Also available as a [gulp](https://github.com/sindresorhus/gulp-strip-json-comme
 
 ## Install
 
-```
+```sh
 $ npm install --save strip-json-comments
 ```
 
-```
+```sh
 $ bower install --save strip-json-comments
 ```
 
-```
+```sh
 $ component install sindresorhus/strip-json-comments
 ```
 
@@ -57,19 +57,16 @@ Accepts a string with JSON and returns a string without comments.
 
 ## CLI
 
-```
+```sh
 $ npm install --global strip-json-comments
 ```
 
-```
+```sh
 $ strip-json-comments --help
 
-  Usage
-    $ strip-json-comments <input-file> > <output-file>
-    $ strip-json-comments < <input-file> > <output-file>
-
-  Example
-    $ strip-json-comments package.json > package-stripped.json
+strip-json-comments input-file > output-file
+# or
+strip-json-comments < input-file > output-file
 ```
 
 

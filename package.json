@@ -42,8 +42,5 @@
   },
   "engines": {
     "node": ">=0.8.0"
-  },
-  "dependencies": {
-    "meow": "^3.3.0"
   }
 }
