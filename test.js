@@ -20,6 +20,7 @@ suite('Test Cases', function () {
 
 	test('should consider escaped slashes when checking for escaped string quote', function () {
 		assert.strictEqual(strip('{"\\\\":"https://foobar.com"}'), '{"\\\\":"https://foobar.com"}');
+		assert.strictEqual(strip('{"foo\\\"":"https://foobar.com"}'), '{"foo\\\"":"https://foobar.com"}');
 	});
 
 	suite('Line endings', function () {
