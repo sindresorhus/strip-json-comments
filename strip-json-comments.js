@@ -8,6 +8,9 @@
 (function () {
 	'use strict';
 
+	var singleComment = 1;
+	var multiComment = 2;
+
 	function stripJsonComments(str) {
 		var currentChar;
 		var nextChar;
@@ -32,21 +35,21 @@
 			}
 
 			if (!insideComment && currentChar + nextChar === '//') {
-				insideComment = 'single';
+				insideComment = singleComment;
 				i++;
-			} else if (insideComment === 'single' && currentChar + nextChar === '\r\n') {
+			} else if (insideComment === singleComment && currentChar + nextChar === '\r\n') {
 				insideComment = false;
 				i++;
 				ret += currentChar;
 				ret += nextChar;
 				continue;
-			} else if (insideComment === 'single' && currentChar === '\n') {
+			} else if (insideComment === singleComment && currentChar === '\n') {
 				insideComment = false;
 			} else if (!insideComment && currentChar + nextChar === '/*') {
-				insideComment = 'multi';
+				insideComment = multiComment;
 				i++;
 				continue;
-			} else if (insideComment === 'multi' && currentChar + nextChar === '*/') {
+			} else if (insideComment === multiComment && currentChar + nextChar === '*/') {
 				insideComment = false;
 				i++;
 				continue;
