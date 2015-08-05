@@ -24,7 +24,7 @@
 
 			if (!insideComment && currentChar === '"') {
 				var escaped = str[i - 1] === '\\' && str[i - 2] !== '\\';
-				if (!insideComment && !escaped && currentChar === '"') {
+				if (!escaped) {
 					insideString = !insideString;
 				}
 			}
