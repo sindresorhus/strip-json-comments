@@ -9,6 +9,8 @@ suite('Test Cases', function () {
 		assert.strictEqual(strip('{"a":"b"//comment\n}'), '{"a":"b"\n}');
 		assert.strictEqual(strip('{"a":"b"/*comment*/}'), '{"a":"b"}');
 		assert.strictEqual(strip('{"a"/*\n\n\ncomment\r\n*/:"b"}'), '{"a":"b"}');
+		assert.strictEqual(strip('/*!\n * comment\n */\n{"a":"b"}'), '\n{"a":"b"}');
+		assert.strictEqual(strip('{/*comment*/"a":"b"}'), '{"a":"b"}');
 	});
 
 	test('should not strip comments inside strings', function () {
