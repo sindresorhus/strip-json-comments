@@ -1,6 +1,6 @@
 'use strict';
 var assert = require('assert');
-var strip = require('./strip-json-comments');
+var strip = require('./');
 
 suite('Test Cases', function () {
 	test('should replace comments with whitespace', function () {

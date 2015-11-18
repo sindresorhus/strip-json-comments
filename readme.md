@@ -22,16 +22,8 @@ Also available as a [gulp](https://github.com/sindresorhus/gulp-strip-json-comme
 
 ## Install
 
-```sh
+```
 $ npm install --save strip-json-comments
-```
-
-```sh
-$ bower install --save strip-json-comments
-```
-
-```sh
-$ component install sindresorhus/strip-json-comments
 ```
 
 

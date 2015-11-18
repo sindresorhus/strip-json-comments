@@ -29,9 +29,8 @@
   },
   "files": [
     "cli.js",
-    "strip-json-comments.js"
+    "index.js"
   ],
-  "main": "strip-json-comments",
   "bin": "cli.js",
   "repository": "sindresorhus/strip-json-comments",
   "scripts": {
@@ -41,6 +40,6 @@
     "mocha": "*"
   },
   "engines": {
-    "node": ">=0.8.0"
+    "node": ">=0.10.0"
   }
 }
