@@ -11,7 +11,7 @@ This is now possible:
 }
 ```
 
-It will remove single-line comments `//` and multi-line comments `/**/`.
+It will replace single-line comments `//` and multi-line comments `/**/` with whitespace. This allows JSON error positions to remain as close as possible to the original source.
 
 Also available as a [gulp](https://github.com/sindresorhus/gulp-strip-json-comments)/[grunt](https://github.com/sindresorhus/grunt-strip-json-comments)/[broccoli](https://github.com/sindresorhus/broccoli-strip-json-comments) plugin.
 
@@ -46,13 +46,19 @@ JSON.parse(stripJsonComments(json));
 
 ## API
 
-### stripJsonComments(input)
+### stripJsonComments(input, options)
 
 #### input
 
 Type: `string`
 
 Accepts a string with JSON and returns a string without comments.
+
+#### options
+
+Type: `object`
+
+* **whitespace** Replaces comments with whitespace, instead of stripping them entirely (default: `true`)
 
 
 ## CLI

@@ -11,12 +11,24 @@
 	var singleComment = 1;
 	var multiComment = 2;
 
-	function stripJsonComments(str) {
+	function stripWithoutWhitespace (str, start, end) {
+		return '';
+	}
+
+	function stripWithWhitespace (str, start, end) {
+		return str.slice(start, end).replace(/\S/g, ' ');
+	}
+
+	function stripJsonComments(str, options) {
+		options = options || {};
+
 		var currentChar;
 		var nextChar;
 		var insideString = false;
 		var insideComment = false;
+		var offset = 0;
 		var ret = '';
+		var strip = options.whitespace === false ? stripWithoutWhitespace : stripWithWhitespace;
 
 		for (var i = 0; i < str.length; i++) {
 			currentChar = str[i];
@@ -30,39 +42,40 @@
 			}
 
 			if (insideString) {
-				ret += currentChar;
 				continue;
 			}
 
 			if (!insideComment && currentChar + nextChar === '//') {
+				ret += str.slice(offset, i);
+				offset = i;
 				insideComment = singleComment;
 				i++;
 			} else if (insideComment === singleComment && currentChar + nextChar === '\r\n') {
-				insideComment = false;
 				i++;
-				ret += currentChar;
-				ret += nextChar;
+				insideComment = false;
+				ret += strip(str, offset, i);
+				offset = i;
 				continue;
 			} else if (insideComment === singleComment && currentChar === '\n') {
 				insideComment = false;
+				ret += strip(str, offset, i);
+				offset = i;
 			} else if (!insideComment && currentChar + nextChar === '/*') {
+				ret += str.slice(offset, i);
+				offset = i;
 				insideComment = multiComment;
 				i++;
 				continue;
 			} else if (insideComment === multiComment && currentChar + nextChar === '*/') {
-				insideComment = false;
 				i++;
+				insideComment = false;
+				ret += strip(str, offset, i + 1);
+				offset = i + 1;
 				continue;
 			}
-
-			if (insideComment) {
-				continue;
-			}
-
-			ret += currentChar;
 		}
 
-		return ret;
+		return ret + str.substr(offset);
 	}
 
 	if (typeof module !== 'undefined' && module.exports) {
