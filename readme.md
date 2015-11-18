@@ -15,10 +15,6 @@ It will replace single-line comments `//` and multi-line comments `/**/` with wh
 
 Also available as a [gulp](https://github.com/sindresorhus/gulp-strip-json-comments)/[grunt](https://github.com/sindresorhus/grunt-strip-json-comments)/[broccoli](https://github.com/sindresorhus/broccoli-strip-json-comments) plugin.
 
--
-
-*There's also [`json-comments`](https://npmjs.org/package/json-comments), but it's only for Node.js, inefficient, bloated as it also minifies, and comes with a `require` hook, which is :(*
-
 
 ## Install
 
@@ -30,7 +26,8 @@ $ npm install --save strip-json-comments
 ## Usage
 
 ```js
-var json = '{/*rainbows*/"unicorn":"cake"}';
+const json = '{/*rainbows*/"unicorn":"cake"}';
+
 JSON.parse(stripJsonComments(json));
 //=> {unicorn: 'cake'}
 ```
@@ -38,7 +35,7 @@ JSON.parse(stripJsonComments(json));
 
 ## API
 
-### stripJsonComments(input, options)
+### stripJsonComments(input, [options])
 
 #### input
 
@@ -48,29 +45,18 @@ Accepts a string with JSON and returns a string without comments.
 
 #### options
 
-Type: `object`
+##### whitespace
 
-* **whitespace** Replaces comments with whitespace, instead of stripping them entirely (default: `true`)
+Type: `boolean`  
+Default: `true`
 
-
-## CLI
-
-```sh
-$ npm install --global strip-json-comments
-```
-
-```sh
-$ strip-json-comments --help
-
-strip-json-comments input-file > output-file
-# or
-strip-json-comments < input-file > output-file
-```
+Replace comments with whitespace instead of stripping them entirely.
 
 
 ## Related
 
-- [`strip-css-comments`](https://github.com/sindresorhus/strip-css-comments)
+- [strip-json-comments-cli](https://github.com/sindresorhus/strip-json-comments-cli) - CLI for this module
+- [strip-css-comments](https://github.com/sindresorhus/strip-css-comments) - Strip comments from CSS
 
 
 ## License
