@@ -66,5 +66,5 @@ module.exports = function (str, opts) {
 		}
 	}
 
-	return ret + str.substr(offset);
+	return ret + (insideComment ? strip(str.substr(offset)) : str.substr(offset));
 };

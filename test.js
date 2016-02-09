@@ -53,3 +53,9 @@ test('line endings - multi line block comment', t => {
 	t.is(fn('{"a":"b",/*c\nc2*/"x":"y"\n}'), '{"a":"b",   \n    "x":"y"\n}');
 	t.is(fn('{"a":"b",/*c\r\nc2*/"x":"y"\r\n}'), '{"a":"b",   \r\n    "x":"y"\r\n}');
 });
+
+test('line endings - works at EOF', t => {
+	const opts = {whitespace: false};
+	t.is(fn('{\r\n\t"a":"b"\r\n} //EOF'), '{\r\n\t"a":"b"\r\n}      ');
+	t.is(fn('{\r\n\t"a":"b"\r\n} //EOF', opts), '{\r\n\t"a":"b"\r\n} ');
+});
