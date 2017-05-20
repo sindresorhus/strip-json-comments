@@ -53,6 +53,13 @@ Default: `true`
 Replace comments with whitespace instead of stripping them entirely.
 
 
+## Benchmark
+
+```
+$ npm run bench
+```
+
+
 ## Related
 
 - [strip-json-comments-cli](https://github.com/sindresorhus/strip-json-comments-cli) - CLI for this module
