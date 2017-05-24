@@ -1,9 +1,10 @@
+/* globals bench */
 'use strict';
 const fs = require('fs');
-const stripJsonComments = require('./');
+const stripJsonComments = require('.');
 
 const json = fs.readFileSync('sample.json', 'utf8');
 
-bench('strip JSON comments', function () {
+bench('strip JSON comments', () => {
 	stripJsonComments(json);
 });

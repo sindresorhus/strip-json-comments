@@ -1,32 +1,25 @@
 'use strict';
-var singleComment = 1;
-var multiComment = 2;
+const singleComment = 1;
+const multiComment = 2;
+const stripWithoutWhitespace = () => '';
+const stripWithWhitespace = (str, start, end) => str.slice(start, end).replace(/\S/g, ' ');
 
-function stripWithoutWhitespace() {
-	return '';
-}
-
-function stripWithWhitespace(str, start, end) {
-	return str.slice(start, end).replace(/\S/g, ' ');
-}
-
-module.exports = function (str, opts) {
+module.exports = (str, opts) => {
 	opts = opts || {};
 
-	var currentChar;
-	var nextChar;
-	var insideString = false;
-	var insideComment = false;
-	var offset = 0;
-	var ret = '';
-	var strip = opts.whitespace === false ? stripWithoutWhitespace : stripWithWhitespace;
+	const strip = opts.whitespace === false ? stripWithoutWhitespace : stripWithWhitespace;
 
-	for (var i = 0; i < str.length; i++) {
-		currentChar = str[i];
-		nextChar = str[i + 1];
+	let insideString = false;
+	let insideComment = false;
+	let offset = 0;
+	let ret = '';
+
+	for (let i = 0; i < str.length; i++) {
+		const currentChar = str[i];
+		const nextChar = str[i + 1];
 
 		if (!insideComment && currentChar === '"') {
-			var escaped = str[i - 1] === '\\' && str[i - 2] !== '\\';
+			const escaped = str[i - 1] === '\\' && str[i - 2] !== '\\';
 			if (!escaped) {
 				insideString = !insideString;
 			}
