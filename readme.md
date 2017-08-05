@@ -19,7 +19,7 @@ Also available as a [gulp](https://github.com/sindresorhus/gulp-strip-json-comme
 ## Install
 
 ```
-$ npm install --save strip-json-comments
+$ npm install strip-json-comments
 ```
 
 
