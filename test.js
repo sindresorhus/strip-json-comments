@@ -59,3 +59,8 @@ test('line endings - works at EOF', t => {
 	t.is(m('{\r\n\t"a":"b"\r\n} //EOF'), '{\r\n\t"a":"b"\r\n}      ');
 	t.is(m('{\r\n\t"a":"b"\r\n} //EOF', opts), '{\r\n\t"a":"b"\r\n} ');
 });
+
+test.failing('handles weird escaping', t => {
+	// eslint-disable-next-line no-useless-escape
+	t.is(m('{"x":"x \"sed -e \\\"s/^.\\\\{46\\\\}T//\\\" -e \\\"s/#033/\\\\x1b/g\\\"\""}'), '{"x":"x \"sed -e \\\"s/^.\\\\{46\\\\}T//\\\" -e \\\"s/#033/\\\\x1b/g\\\"\""}');
+});
