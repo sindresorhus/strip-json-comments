@@ -4,6 +4,18 @@ const multiComment = 2;
 const stripWithoutWhitespace = () => '';
 const stripWithWhitespace = (str, start, end) => str.slice(start, end).replace(/\S/g, ' ');
 
+const isEscaped = (str, qoutePos) => {
+	let i = qoutePos - 1;
+	let numOfBackslash = 0;
+
+	while (str[i] === '\\') {
+		numOfBackslash += 1;
+		i -= 1;
+	}
+
+	return Boolean(numOfBackslash % 2);
+};
+
 module.exports = (str, opts) => {
 	opts = opts || {};
 
@@ -19,7 +31,7 @@ module.exports = (str, opts) => {
 		const nextChar = str[i + 1];
 
 		if (!insideComment && currentChar === '"') {
-			const escaped = str[i - 1] === '\\' && str[i - 2] !== '\\';
+			const escaped = isEscaped(str, i);
 			if (!escaped) {
 				insideString = !insideString;
 			}

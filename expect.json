@@ -1,0 +1,7 @@
+
+{
+   "scripts": {
+      
+     "tail": "ssh some_host \"tail -f some_file | sed -e \\\"s/^.\\\\{46\\\\}T//\\\" -e \\\"s/#033/\\\\x1b/g\\\"\""
+   }
+ }

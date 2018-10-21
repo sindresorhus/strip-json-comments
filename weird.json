@@ -1,0 +1,8 @@
+// From: https://github.com/sindresorhus/strip-json-comments/issues/36.
+{
+   "scripts": {
+      // The following should not be processed.
+     "tail": "ssh some_host \"tail -f some_file | sed -e \\\"s/^.\\\\{46\\\\}T//\\\" -e \\\"s/#033/\\\\x1b/g\\\"\""
+   }
+ }
+// Start of line comment should be removed.

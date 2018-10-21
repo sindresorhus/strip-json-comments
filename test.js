@@ -60,7 +60,16 @@ test('line endings - works at EOF', t => {
 	t.is(m('{\r\n\t"a":"b"\r\n} //EOF', opts), '{\r\n\t"a":"b"\r\n} ');
 });
 
-test.failing('handles weird escaping', t => {
-	// eslint-disable-next-line no-useless-escape
-	t.is(m('{"x":"x \"sed -e \\\"s/^.\\\\{46\\\\}T//\\\" -e \\\"s/#033/\\\\x1b/g\\\"\""}'), '{"x":"x \"sed -e \\\"s/^.\\\\{46\\\\}T//\\\" -e \\\"s/#033/\\\\x1b/g\\\"\""}');
+test('handles weird escaping - read files', t => {
+	const opts = {whitespace: false};
+	const fs = require('fs');
+	const weirdData = fs.readFileSync(`${__dirname}/weird.json`, 'utf8');
+	const expectedData = fs.readFileSync(`${__dirname}/expect.json`, 'utf8');
+
+	t.is(m(weirdData, opts), expectedData);
+});
+
+test('handles weird escaping - string literals', t => {
+	const weirdData = '{"x":"x \\"sed -e \\\\\\"s/^.\\\\\\\\{46\\\\\\\\}T//\\\\\\" -e \\\\\\"s/#033/\\\\\\\\x1b/g\\\\\\"\\""}';
+	t.is(m(weirdData), weirdData);
 });
