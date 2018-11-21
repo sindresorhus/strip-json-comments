@@ -58,6 +58,6 @@ module.exports = (str, opts) => {
 			continue;
 		}
 	}
-
-	return ret + (insideComment ? strip(str.substr(offset)) : str.substr(offset));
+	ret = ret + (insideComment ? strip(str.substr(offset)) : str.substr(offset));
+	return ret.replace(/,(?=\s*?[}\]])/,'');
 };
