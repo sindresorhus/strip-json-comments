@@ -26,7 +26,10 @@ $ npm install strip-json-comments
 ## Usage
 
 ```js
-const json = '{/*rainbows*/"unicorn":"cake"}';
+const json = `{
+	// rainbows
+	"unicorn": /* ❤ */ "cake"
+}`;
 
 JSON.parse(stripJsonComments(json));
 //=> {unicorn: 'cake'}
@@ -35,9 +38,9 @@ JSON.parse(stripJsonComments(json));
 
 ## API
 
-### stripJsonComments(input, [options])
+### stripJsonComments(jsonString, [options])
 
-#### input
+#### jsonString
 
 Type: `string`
 
