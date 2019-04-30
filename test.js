@@ -60,7 +60,6 @@ test('line endings - works at EOF', t => {
 	t.is(stripJsonComments('{\r\n\t"a":"b"\r\n} //EOF', options), '{\r\n\t"a":"b"\r\n} ');
 });
 
-test.failing('handles weird escaping', t => {
-	// eslint-disable-next-line no-useless-escape
-	t.is(stripJsonComments('{"x":"x \"sed -e \\\"s/^.\\\\{46\\\\}T//\\\" -e \\\"s/#033/\\\\x1b/g\\\"\""}'), '{"x":"x \"sed -e \\\"s/^.\\\\{46\\\\}T//\\\" -e \\\"s/#033/\\\\x1b/g\\\"\""}');
+test('handles weird escaping', t => {
+	t.is(stripJsonComments(String.raw`{"x":"x \"sed -e \\\"s/^.\\\\{46\\\\}T//\\\" -e \\\"s/#033/\\\\x1b/g\\\"\""}`), String.raw`{"x":"x \"sed -e \\\"s/^.\\\\{46\\\\}T//\\\" -e \\\"s/#033/\\\\x1b/g\\\"\""}`);
 });
