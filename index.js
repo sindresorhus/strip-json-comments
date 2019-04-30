@@ -4,16 +4,16 @@ const multiComment = Symbol('multiComment');
 const stripWithoutWhitespace = () => '';
 const stripWithWhitespace = (string, start, end) => string.slice(start, end).replace(/\S/g, ' ');
 
-const isEscaped = (jsonString, qoutePos) => {
-	let i = qoutePos - 1;
-	let numOfBackslash = 0;
+const isEscaped = (jsonString, quotePosition) => {
+	let index = quotePosition - 1;
+	let backslashCount = 0;
 
-	while (jsonString[i] === '\\') {
-		numOfBackslash += 1;
-		i -= 1;
+	while (jsonString[index] === '\\') {
+		index -= 1;
+		backslashCount += 1;
 	}
 
-	return Boolean(numOfBackslash % 2);
+	return Boolean(backslashCount % 2);
 };
 
 module.exports = (jsonString, options = {}) => {
