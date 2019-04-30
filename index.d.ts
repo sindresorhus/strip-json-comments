@@ -20,7 +20,7 @@ It will replace single-line comments `//` and multi-line comments `/**\/` with w
 @example
 ```
 const json = `{
-	// rainbows
+	// Rainbows
 	"unicorn": "cake"
 }`;
 

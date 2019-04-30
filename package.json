@@ -13,24 +13,24 @@
 		"node": ">=8"
 	},
 	"scripts": {
-		"test": "xo && ava",
+		"test": "xo && ava && tsd",
 		"bench": "matcha benchmark.js"
 	},
 	"files": [
-		"index.js"
+		"index.js",
+		"index.d.ts"
 	],
 	"keywords": [
 		"json",
 		"strip",
+		"comments",
 		"remove",
 		"delete",
 		"trim",
-		"comments",
 		"multiline",
 		"parse",
 		"config",
 		"configuration",
-		"conf",
 		"settings",
 		"util",
 		"env",

@@ -6,14 +6,14 @@ This is now possible:
 
 ```js
 {
-	// rainbows
+	// Rainbows
 	"unicorn": /* ❤ */ "cake"
 }
 ```
 
 It will replace single-line comments `//` and multi-line comments `/**/` with whitespace. This allows JSON error positions to remain as close as possible to the original source.
 
-Also available as a [gulp](https://github.com/sindresorhus/gulp-strip-json-comments)/[grunt](https://github.com/sindresorhus/grunt-strip-json-comments)/[broccoli](https://github.com/sindresorhus/broccoli-strip-json-comments) plugin.
+Also available as a [Gulp](https://github.com/sindresorhus/gulp-strip-json-comments)/[Grunt](https://github.com/sindresorhus/grunt-strip-json-comments)/[Broccoli](https://github.com/sindresorhus/broccoli-strip-json-comments) plugin.
 
 
 ## Install
@@ -27,7 +27,7 @@ $ npm install strip-json-comments
 
 ```js
 const json = `{
-	// rainbows
+	// Rainbows
 	"unicorn": /* ❤ */ "cake"
 }`;
 
@@ -47,6 +47,8 @@ Type: `string`
 Accepts a string with JSON and returns a string without comments.
 
 #### options
+
+Type: `object`
 
 ##### whitespace
 

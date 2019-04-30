@@ -57,5 +57,5 @@ module.exports = (jsonString, options = {}) => {
 		}
 	}
 
-	return result + (insideComment ? strip(jsonString.substr(offset)) : jsonString.substr(offset));
+	return result + (insideComment ? strip(jsonString.slice(offset)) : jsonString.slice(offset));
 };
