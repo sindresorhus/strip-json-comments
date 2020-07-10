@@ -34,7 +34,8 @@
 		"settings",
 		"util",
 		"env",
-		"environment"
+		"environment",
+		"jsonc"
 	],
 	"devDependencies": {
 		"ava": "^1.4.1",
