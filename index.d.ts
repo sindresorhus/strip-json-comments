@@ -19,6 +19,8 @@ It will replace single-line comments `//` and multi-line comments `/**\/` with w
 
 @example
 ```
+import stripJsonComments = require('strip-json-comments');
+
 const json = `{
 	// Rainbows
 	"unicorn": "cake"
