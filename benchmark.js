@@ -1,7 +1,6 @@
 /* globals bench, set */
-'use strict';
-const fs = require('fs');
-const stripJsonComments = require('.');
+import fs from 'node:fs';
+import stripJsonComments from './index.js';
 
 const json = fs.readFileSync('sample.json', 'utf8');
 const bigJson = fs.readFileSync('sample-big.json', 'utf8');

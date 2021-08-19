@@ -1,7 +1,5 @@
 import {expectType} from 'tsd';
-import stripJsonComments = require('.');
-
-const options: stripJsonComments.Options = {};
+import stripJsonComments from './index.js';
 
 const json = '{/*rainbows*/"unicorn":"cake"}';
 

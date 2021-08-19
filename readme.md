@@ -24,7 +24,7 @@ $ npm install strip-json-comments
 ## Usage
 
 ```js
-const stripJsonComments = require('strip-json-comments');
+import stripJsonComments from 'strip-json-comments';
 
 const json = `{
 	// Rainbows

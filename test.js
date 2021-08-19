@@ -1,5 +1,5 @@
 import test from 'ava';
-import stripJsonComments from '.';
+import stripJsonComments from './index.js';
 
 test('replace comments with whitespace', t => {
 	t.is(stripJsonComments('//comment\n{"a":"b"}'), '         \n{"a":"b"}');

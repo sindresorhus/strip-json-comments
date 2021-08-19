@@ -1,12 +1,10 @@
-declare namespace stripJsonComments {
-	interface Options {
-		/**
-		Replace comments with whitespace instead of stripping them entirely.
+export interface Options {
+	/**
+	Replace comments with whitespace instead of stripping them entirely.
 
-		@default true
-		*/
-		readonly whitespace?: boolean;
-	}
+	@default true
+	*/
+	readonly whitespace?: boolean;
 }
 
 /**
@@ -19,7 +17,7 @@ It will replace single-line comments `//` and multi-line comments `/**\/` with w
 
 @example
 ```
-import stripJsonComments = require('strip-json-comments');
+import stripJsonComments from 'strip-json-comments';
 
 const json = `{
 	// Rainbows
@@ -30,9 +28,7 @@ JSON.parse(stripJsonComments(json));
 //=> {unicorn: 'cake'}
 ```
 */
-declare function stripJsonComments(
+export default function stripJsonComments(
 	jsonString: string,
-	options?: stripJsonComments.Options
+	options?: Options
 ): string;
-
-export = stripJsonComments;
