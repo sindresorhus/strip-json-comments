@@ -11,10 +11,14 @@ export default function stripJsonComments(jsonString, {whitespace = true} = {}) 
 	// as strings, not comments, so we can just skip the whole string
 	// in the replacer function.
 	return jsonString.replace(
-		/"(?:[^"\\]|\\.)*"|\/\/[^\r\n]*|\/\*(?:[^*]|\*[^/])*\*\//g, match =>
-			// Skip strings:
-			match[0] === '"' ? match
-				// Replace comments with whitespace (or not):
-				: (whitespace ? match.replace(/\S/g, ' ') : ''),
+		/"(?:[^"\\]|\\.)*"?|\/\/[^\r\n]*|\/\*(?:[^*]|\*[^/])*(?:\*\/)?/g, match => {
+			// Skip strings & broken block comments:
+			if (match[0] === '"' || (match[1] === '*' && match.slice(-2) !== '*/')) {
+				return match;
+			}
+
+			// Replace comments with whitespace (or not):
+			return whitespace ? match.replace(/\S/g, ' ') : '';
+		},
 	);
 }

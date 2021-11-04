@@ -67,3 +67,7 @@ test('handles weird escaping', t => {
 test('handles multiple comments in one input', t => {
 	t.is(stripJsonComments('// array:\n[1, /* 2 */, 3, /* todo... */] // end'), '         \n[1,        , 3,              ]       ');
 });
+
+test('handles malformed block comments', t => {
+	t.is(stripJsonComments('[] /*'), '[] /*');
+});

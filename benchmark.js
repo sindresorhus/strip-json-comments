@@ -17,3 +17,8 @@ bench('strip JSON comments without whitespace', () => {
 bench('strip Big JSON comments', () => {
 	stripJsonComments(bigJson);
 });
+
+bench('avoids quadratic slowdowns', () => {
+	stripJsonComments('"\\'.repeat(10_000));
+	stripJsonComments('/* '.repeat(10_000));
+});
