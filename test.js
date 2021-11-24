@@ -63,3 +63,8 @@ test('line endings - works at EOF', t => {
 test('handles weird escaping', t => {
 	t.is(stripJsonComments(String.raw`{"x":"x \"sed -e \\\"s/^.\\\\{46\\\\}T//\\\" -e \\\"s/#033/\\\\x1b/g\\\"\""}`), String.raw`{"x":"x \"sed -e \\\"s/^.\\\\{46\\\\}T//\\\" -e \\\"s/#033/\\\\x1b/g\\\"\""}`);
 });
+
+test.failing('handles malformed block comments', t => {
+	t.is(stripJsonComments('[] */'), '[] */');
+	t.is(stripJsonComments('[] /*'), '[] /*'); // Fails
+});
