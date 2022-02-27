@@ -24,7 +24,7 @@ $ npm install strip-json-comments
 ## Usage
 
 ```js
-import stripJsonComments from 'strip-json-comments';
+import stripJsonComments from "strip-json-comments";
 
 const json = `{
 	// Rainbows
@@ -78,3 +78,7 @@ $ npm run bench
 		Tidelift helps make open source sustainable for maintainers while giving companies<br>assurances about security, maintenance, and licensing for their dependencies.
 	</sub>
 </div>
+
+## module types
+
+strip-json-comments is a hybrid package that supports both es & commonjs modules
