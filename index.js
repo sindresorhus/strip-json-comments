@@ -16,7 +16,7 @@ const isEscaped = (jsonString, quotePosition) => {
 	return Boolean(backslashCount % 2);
 };
 
-export default function stripJsonComments(jsonString, {whitespace = true} = {}) {
+export default function stripJsonComments(jsonString, {whitespace = true, trailingCommas = false} = {}) {
 	if (typeof jsonString !== 'string') {
 		throw new TypeError(`Expected argument \`jsonString\` to be a \`string\`, got \`${typeof jsonString}\``);
 	}
@@ -26,13 +26,16 @@ export default function stripJsonComments(jsonString, {whitespace = true} = {}) 
 	let isInsideString = false;
 	let isInsideComment = false;
 	let offset = 0;
+	let buffer = '';
 	let result = '';
+	let commaIndex = -1;
 
 	for (let index = 0; index < jsonString.length; index++) {
 		const currentCharacter = jsonString[index];
 		const nextCharacter = jsonString[index + 1];
 
 		if (!isInsideComment && currentCharacter === '"') {
+			// Enter or exit string
 			const escaped = isEscaped(jsonString, index);
 			if (!escaped) {
 				isInsideString = !isInsideString;
@@ -44,34 +47,61 @@ export default function stripJsonComments(jsonString, {whitespace = true} = {}) 
 		}
 
 		if (!isInsideComment && currentCharacter + nextCharacter === '//') {
-			result += jsonString.slice(offset, index);
+			// Enter single-line comment
+			buffer += jsonString.slice(offset, index);
 			offset = index;
 			isInsideComment = singleComment;
 			index++;
 		} else if (isInsideComment === singleComment && currentCharacter + nextCharacter === '\r\n') {
+			// Exit single-line comment via \r\n
 			index++;
 			isInsideComment = false;
-			result += strip(jsonString, offset, index);
+			buffer += strip(jsonString, offset, index);
 			offset = index;
 			continue;
 		} else if (isInsideComment === singleComment && currentCharacter === '\n') {
+			// Exit single-line comment via \n
 			isInsideComment = false;
-			result += strip(jsonString, offset, index);
+			buffer += strip(jsonString, offset, index);
 			offset = index;
 		} else if (!isInsideComment && currentCharacter + nextCharacter === '/*') {
-			result += jsonString.slice(offset, index);
+			// Enter multiline comment
+			buffer += jsonString.slice(offset, index);
 			offset = index;
 			isInsideComment = multiComment;
 			index++;
 			continue;
 		} else if (isInsideComment === multiComment && currentCharacter + nextCharacter === '*/') {
+			// Exit multiline comment
 			index++;
 			isInsideComment = false;
-			result += strip(jsonString, offset, index + 1);
+			buffer += strip(jsonString, offset, index + 1);
 			offset = index + 1;
 			continue;
+		} else if (trailingCommas && !isInsideComment) {
+			if (commaIndex !== -1) {
+				if (currentCharacter === '}' || currentCharacter === ']') {
+					// Strip trailing comma
+					buffer += jsonString.slice(offset, index);
+					result += strip(buffer, 0, 1) + buffer.slice(1);
+					buffer = '';
+					offset = index;
+					commaIndex = -1;
+				} else if (currentCharacter !== ' ' && currentCharacter !== '\t' && currentCharacter !== '\r' && currentCharacter !== '\n') {
+					// Hit non-whitespace following a comma; comma is not trailing
+					buffer += jsonString.slice(offset, index);
+					offset = index;
+					commaIndex = -1;
+				}
+			} else if (currentCharacter === ',') {
+				// Flush buffer prior to this point, and save new comma index
+				result += buffer + jsonString.slice(offset, index);
+				buffer = '';
+				offset = index;
+				commaIndex = index;
+			}
 		}
 	}
 
-	return result + (isInsideComment ? strip(jsonString.slice(offset)) : jsonString.slice(offset));
+	return result + buffer + (isInsideComment ? strip(jsonString.slice(offset)) : jsonString.slice(offset));
 }
