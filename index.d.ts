@@ -1,17 +1,17 @@
 export interface Options {
 	/**
-	Replace comments with whitespace instead of stripping them entirely.
-
-	@default true
-	*/
-	readonly whitespace?: boolean;
-
-	/**
 	Strip trailing commas in addition to comments.
 
 	@default true
 	*/
 	readonly trailingCommas?: boolean;
+
+	/**
+	Replace comments and trailing commas with whitespace instead of stripping them entirely.
+
+	@default true
+	*/
+	readonly whitespace?: boolean;
 }
 
 /**

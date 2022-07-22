@@ -12,8 +12,9 @@
 	},
 	"type": "module",
 	"exports": "./index.js",
+	"types": "./index.d.ts",
 	"engines": {
-		"node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+		"node": ">=14.16"
 	},
 	"scripts": {
 		"test": "xo && ava && tsd",
@@ -41,10 +42,10 @@
 		"jsonc"
 	],
 	"devDependencies": {
-		"ava": "^3.15.0",
+		"ava": "^4.3.1",
 		"matcha": "^0.7.0",
-		"tsd": "^0.17.0",
-		"xo": "^0.44.0"
+		"tsd": "^0.22.0",
+		"xo": "^0.51.0"
 	},
 	"xo": {
 		"rules": {

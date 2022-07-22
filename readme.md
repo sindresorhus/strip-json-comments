@@ -17,8 +17,8 @@ Also available as a [Gulp](https://github.com/sindresorhus/gulp-strip-json-comme
 
 ## Install
 
-```
-$ npm install strip-json-comments
+```sh
+npm install strip-json-comments
 ```
 
 ## Usage
@@ -49,7 +49,6 @@ Accepts a string with JSON and returns a string without comments.
 
 Type: `object`
 
-
 ##### trailingCommas
 
 Type: `boolean`\
@@ -66,8 +65,8 @@ Replace comments and trailing commas with whitespace instead of stripping them e
 
 ## Benchmark
 
-```
-$ npm run bench
+```sh
+npm run bench
 ```
 
 ## Related
