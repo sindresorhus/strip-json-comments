@@ -49,12 +49,20 @@ Accepts a string with JSON and returns a string without comments.
 
 Type: `object`
 
+
+##### trailingCommas
+
+Type: `boolean`\
+Default: `false`
+
+Strip trailing commas in addition to comments.
+
 ##### whitespace
 
 Type: `boolean`\
 Default: `true`
 
-Replace comments with whitespace instead of stripping them entirely.
+Replace comments and trailing commas with whitespace instead of stripping them entirely.
 
 ## Benchmark
 
