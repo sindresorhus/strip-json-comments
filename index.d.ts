@@ -2,7 +2,7 @@ export interface Options {
 	/**
 	Strip trailing commas in addition to comments.
 
-	@default true
+	@default false
 	*/
 	readonly trailingCommas?: boolean;
 
