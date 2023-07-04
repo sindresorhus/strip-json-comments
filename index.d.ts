@@ -1,4 +1,4 @@
-export interface Options {
+export type Options = {
 	/**
 	Strip trailing commas in addition to comments.
 
@@ -12,7 +12,7 @@ export interface Options {
 	@default true
 	*/
 	readonly whitespace?: boolean;
-}
+};
 
 /**
 Strip comments from JSON. Lets you use comments in your JSON files!
