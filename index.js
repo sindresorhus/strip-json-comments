@@ -2,7 +2,9 @@ const singleComment = Symbol('singleComment');
 const multiComment = Symbol('multiComment');
 
 const stripWithoutWhitespace = () => '';
-const stripWithWhitespace = (string, start, end) => string.slice(start, end).replace(/\S/g, ' ');
+
+// Replace all characters except ASCII spaces, tabs and line endings with regular spaces to ensure valid JSON output.
+const stripWithWhitespace = (string, start, end) => string.slice(start, end).replace(/[^ \t\r\n]/g, ' ');
 
 const isEscaped = (jsonString, quotePosition) => {
 	let index = quotePosition - 1;

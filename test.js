@@ -78,3 +78,13 @@ test.failing('handles malformed block comments', t => {
 	t.is(stripJsonComments('[] */'), '[] */');
 	t.is(stripJsonComments('[] /*'), '[] /*'); // Fails
 });
+
+test('handles non-breaking space with preserving whitespace', t => {
+	const fixture = `{
+	// Comment with non-breaking-space: '\u00A0'
+	"a": 1
+	}`;
+
+	const stripped = stripJsonComments(fixture);
+	t.deepEqual(JSON.parse(stripped), {a: 1});
+});
