@@ -105,5 +105,9 @@ export default function stripJsonComments(jsonString, {whitespace = true, traili
 		}
 	}
 
-	return result + buffer + (isInsideComment ? strip(jsonString.slice(offset)) : jsonString.slice(offset));
+	const remaining = (isInsideComment === singleComment)
+		? strip(jsonString, offset)
+		: jsonString.slice(offset);
+
+	return result + buffer + remaining;
 }
