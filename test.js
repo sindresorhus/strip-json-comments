@@ -74,9 +74,9 @@ test('strips trailing commas', t => {
 	t.is(stripJsonComments('{\n  "array": [\n    true,\n    false /* comment */ ,\n /*comment*/ ],\n}', {trailingCommas: true, whitespace: false}), '{\n  "array": [\n    true,\n    false  \n  ]\n}');
 });
 
-test.failing('handles malformed block comments', t => {
+test('handles malformed block comments', t => {
 	t.is(stripJsonComments('[] */'), '[] */');
-	t.is(stripJsonComments('[] /*'), '[] /*'); // Fails
+	t.is(stripJsonComments('[] /*'), '[] /*');
 });
 
 test('handles non-breaking space with preserving whitespace', t => {

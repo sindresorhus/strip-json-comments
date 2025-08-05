@@ -27,6 +27,7 @@ export default function stripJsonComments(jsonString, {whitespace = true, traili
 
 	let isInsideString = false;
 	let isInsideComment = false;
+	let isOutsideComment = true;
 	let offset = 0;
 	let buffer = '';
 	let result = '';
@@ -71,12 +72,14 @@ export default function stripJsonComments(jsonString, {whitespace = true, traili
 			buffer += jsonString.slice(offset, index);
 			offset = index;
 			isInsideComment = multiComment;
+			isOutsideComment = false;
 			index++;
 			continue;
 		} else if (isInsideComment === multiComment && currentCharacter + nextCharacter === '*/') {
 			// Exit multiline comment
 			index++;
 			isInsideComment = false;
+			isOutsideComment = true;
 			buffer += strip(jsonString, offset, index + 1);
 			offset = index + 1;
 			continue;
@@ -105,5 +108,5 @@ export default function stripJsonComments(jsonString, {whitespace = true, traili
 		}
 	}
 
-	return result + buffer + (isInsideComment ? strip(jsonString.slice(offset)) : jsonString.slice(offset));
+	return result + buffer + (isInsideComment && isOutsideComment ? strip(jsonString.slice(offset)) : jsonString.slice(offset));
 }
