@@ -1,6 +1,6 @@
 {
 	"name": "strip-json-comments",
-	"version": "5.0.2",
+	"version": "5.0.3",
 	"description": "Strip comments from JSON. Lets you use comments in your JSON files!",
 	"license": "MIT",
 	"repository": "sindresorhus/strip-json-comments",
