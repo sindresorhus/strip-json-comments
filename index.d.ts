@@ -37,5 +37,7 @@ JSON.parse(stripJsonComments(json));
 */
 export default function stripJsonComments(
 	jsonString: string,
-	options?: Options
+	options?: Options,
 ): string;
+
+export {}; // eslint-disable-line unicorn/require-module-specifiers -- It stops the implicit export of the declarations without `export`.

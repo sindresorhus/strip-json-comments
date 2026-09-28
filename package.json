@@ -5,21 +5,19 @@
 	"license": "MIT",
 	"repository": "sindresorhus/strip-json-comments",
 	"funding": "https://github.com/sponsors/sindresorhus",
-	"author": {
-		"name": "Sindre Sorhus",
-		"email": "sindresorhus@gmail.com",
-		"url": "https://sindresorhus.com"
-	},
+	"author": "Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com)",
 	"type": "module",
-	"exports": "./index.js",
-	"types": "./index.d.ts",
+	"exports": {
+		"types": "./index.d.ts",
+		"default": "./index.js"
+	},
 	"sideEffects": false,
 	"engines": {
-		"node": ">=14.16"
+		"node": ">=22"
 	},
 	"scripts": {
-		"test": "xo && ava && tsd",
-		"bench": "matcha benchmark.js"
+		"test": "xo && node --test",
+		"bench": "node benchmark.js"
 	},
 	"files": [
 		"index.js",
@@ -43,14 +41,20 @@
 		"jsonc"
 	],
 	"devDependencies": {
-		"ava": "^4.3.1",
-		"matcha": "^0.7.0",
-		"tsd": "^0.22.0",
-		"xo": "^0.54.2"
+		"xo": "^5.0.1"
 	},
-	"xo": {
-		"rules": {
-			"complexity": "off"
+	"xo": [
+		{
+			"ignores": [
+				"sample.json",
+				"sample-big.json"
+			]
+		},
+		{
+			"rules": {
+				"complexity": "off",
+				"node-test/no-conditional-assertion": "off"
+			}
 		}
-	}
+	]
 }

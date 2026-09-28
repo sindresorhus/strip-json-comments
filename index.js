@@ -4,7 +4,9 @@ const multiComment = Symbol('multiComment');
 const stripWithoutWhitespace = () => '';
 
 // Replace all characters except ASCII spaces, tabs and line endings with regular spaces to ensure valid JSON output.
-const stripWithWhitespace = (string, start, end) => string.slice(start, end).replace(/[^ \t\r\n]/g, ' ');
+// The `v` flag would make the pattern match code points, so the two halves of a surrogate pair would be blanked as one character and the output would be shorter than the input, breaking the offsets the whole package exists to preserve.
+// eslint-disable-next-line require-unicode-regexp
+const stripWithWhitespace = (string, start, end) => string.slice(start, end).replaceAll(/[^\t\n\r ]/g, ' ');
 
 const isEscaped = (jsonString, quotePosition) => {
 	let index = quotePosition - 1;
@@ -48,38 +50,23 @@ export default function stripJsonComments(jsonString, {whitespace = true, traili
 			continue;
 		}
 
-		if (!isInsideComment && currentCharacter + nextCharacter === '//') {
-			// Enter single-line comment
+		if (!isInsideComment && currentCharacter === '/' && (nextCharacter === '/' || nextCharacter === '*')) {
+			// Enter a comment, stepping over the character that completes its opening marker
 			buffer += jsonString.slice(offset, index);
 			offset = index;
-			isInsideComment = singleComment;
+			isInsideComment = nextCharacter === '/' ? singleComment : multiComment;
 			index++;
-		} else if (isInsideComment === singleComment && currentCharacter + nextCharacter === '\r\n') {
-			// Exit single-line comment via \r\n
-			index++;
+		} else if (isInsideComment === singleComment && (currentCharacter === '\n' || currentCharacter === '\r')) {
+			// Exit single-line comment at LF, CRLF, or CR, leaving the line ending itself intact.
 			isInsideComment = false;
 			buffer += strip(jsonString, offset, index);
 			offset = index;
-			continue;
-		} else if (isInsideComment === singleComment && currentCharacter === '\n') {
-			// Exit single-line comment via \n
-			isInsideComment = false;
-			buffer += strip(jsonString, offset, index);
-			offset = index;
-		} else if (!isInsideComment && currentCharacter + nextCharacter === '/*') {
-			// Enter multiline comment
-			buffer += jsonString.slice(offset, index);
-			offset = index;
-			isInsideComment = multiComment;
-			index++;
-			continue;
-		} else if (isInsideComment === multiComment && currentCharacter + nextCharacter === '*/') {
+		} else if (isInsideComment === multiComment && currentCharacter === '*' && nextCharacter === '/') {
 			// Exit multiline comment
 			index++;
 			isInsideComment = false;
 			buffer += strip(jsonString, offset, index + 1);
 			offset = index + 1;
-			continue;
 		} else if (trailingCommas && !isInsideComment) {
 			if (commaIndex !== -1) {
 				if (currentCharacter === '}' || currentCharacter === ']') {
